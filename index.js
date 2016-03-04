@@ -15,13 +15,14 @@ app.get('/occupations/latest', mainCtrl.getOccupationsLatest);
 app.get('/hobbies', mainCtrl.getHobbies);
 app.get('/hobbies/:type', mainCtrl.getHobbiesType);
 app.get('/skillz', mainCtrl.getSkillz);
+app.get('/secrets/:username/:pin', mainCtrl.getSecrets);
 
 app.put('/name', mainCtrl.putName);
 app.put('/location', mainCtrl.putLocation);
 
 app.post('/hobbies', mainCtrl.postHobbies);
 app.post('/occupations', mainCtrl.postOccupations);
-app.post('/skillz', mainCtrl.postSkillz);
+app.post('/skillz', mainCtrl.generateId, mainCtrl.postSkillz);
 
 app.listen(port, function(){
   console.log('Listening on port: ' + port);

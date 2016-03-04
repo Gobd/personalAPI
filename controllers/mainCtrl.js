@@ -94,12 +94,22 @@ module.exports = {
     me.occupations.push(req.body.occupations);
     res.status(200).json(me.occupations);
 },
-  postSkillz: function(req, res, next) {
+  generateId: function(req, res, next) {
     var skillz = req.body.skillz;
     skillz.id = me.skillz.length + 1;
-    me.skillz.push(skillz);
+    next();
+},
+  postSkillz: function(req, res, next) {
+    me.skillz.push(req.body.skillz);
     res.status(200).json(me.skillz[me.skillz.length - 1]);
-  }
+},
+  getSecrets: function(req, res, next) {
+    if (req.params.username === 'itsme' && req.params.pin === '1111') {
+      res.status(200).json('youdabes');
+    } else {
+      next('nodabes');
+    }
+}
 
 
 
